@@ -6,6 +6,12 @@ from __future__ import annotations
 import sys
 from pathlib import Path
 
+import logging
+logging.basicConfig(
+    level=logging.INFO,
+    format='%(asctime)s - %(levelname)s - %(message)s'
+)
+logger = logging.getLogger(__name__)
 # Add src to path
 sys.path.insert(0, str(Path(__file__).resolve().parents[1]))
 
@@ -158,7 +164,7 @@ def plot_tufte(
     fig.tight_layout()
     save_plot(fig, config.output_plot, dpi=300)
     plt.close(fig)
-    print(f" TimesFM plot saved -> {config.output_plot}")
+    logger.info(f" TimesFM plot saved -> {config.output_plot}")
 
 
 def main() -> None:
@@ -173,27 +179,27 @@ def main() -> None:
     
     # Load series
     series = load_series(config)
-    print(f"Loaded {len(series)} data points")
+    logger.info(f"Loaded {len(series)} data points")
     
     train_series = series.loc[: config.history_end]
     actual = series.loc[config.forecast_start : config.forecast_end]
     
     # Build model
-    print("\nBuilding TimesFM model...")
+    logger.info("\nBuilding TimesFM model...")
     model = build_model(config)
     
     # Prepare training frame
     train_df = prepare_training_frame(series, config.history_end)
     
     # Generate forecast
-    print("Generating forecast...")
+    logger.info("Generating forecast...")
     forecast_values = generate_forecast(model, train_df, config)
     
     # Plot forecast
-    print("\nCreating visualization...")
+    logger.info("\nCreating visualization...")
     plot_tufte(series, config.history_end, forecast_values, actual, config)
     
-    print("\n TimesFM forecasting complete")
+    logger.info("\n TimesFM forecasting complete")
 
 
 if __name__ == "__main__":
