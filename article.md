@@ -2,18 +2,15 @@
 
 Time series analysis is used for finance, healthcare, industrial IoT, and many other fields. Statistical methods like ARIMA and Exponential Smoothing have been the primary tools for forecasting for decades. More recently, deep learning models such as Long Short-Term Memory networks (LSTMs) and Transformers have redefined the space -- now large language models (LLMs) and changing how we do time series analysis.
 
-**Classical and Deep Learning Approaches to Time Series**\
-Before the rise of machine learning, time series analysis was largely a domain of statistical models. ARIMA (AutoRegressive Integrated Moving Average) provided a way to model linear dependencies, while seasonal decomposition techniques helped uncover underlying trends. Economists and engineers relied on these methods to forecast stock prices, optimize supply chains, and monitor equipment failures.
+**Classical and Deep Learning Approaches to Time Series**\ Before the rise of machine learning, time series analysis was largely a domain of statistical models. ARIMA (AutoRegressive Integrated Moving Average) provided a way to model linear dependencies, while seasonal decomposition techniques helped uncover underlying trends. Economists and engineers relied on these methods to forecast stock prices, optimize supply chains, and monitor equipment failures.
 
 Deep learning changed the game. LSTMs and GRUs (Gated Recurrent Units) introduced the ability to capture long-range dependencies in sequential data, making them useful for time series forecasting. CNNs (Convolutional Neural Networks) found applications in irregularly sampled data, while Transformers like Informer and TimeNet extended attention mechanisms to improve efficiency in long time series forecasting. These approaches significantly outperformed classical methods, but they required large labeled datasets, careful feature engineering, and domain-specific model tuning.
 
-**Large Language Models (LLMs) in Data Analysis**\
-LLMs, originally developed for natural language processing, have proven remarkably versatile. GPT-4, LLaMA, and PaLM are trained on trillions of words, learning not just syntax and semantics but also generalizable reasoning patterns. Researchers soon realized that these models could extend beyond text to other structured data types, including images, tabular data, and time series.
+**Large Language Models (LLMs) in Data Analysis**\ LLMs, originally developed for natural language processing, have proven remarkably versatile. GPT-4, LLaMA, and PaLM are trained on trillions of words, learning not just syntax and semantics but also generalizable reasoning patterns. Researchers soon realized that these models could extend beyond text to other structured data types, including images, tabular data, and time series.
 
 LLMs generalize across domains. Unlike traditional machine learning models that require extensive retraining for each new task, LLMs can leverage few-shot and zero-shot learning to generate insights from raw data with minimal supervision. This ability makes them particularly attractive for time series applications, where labeled data is often scarce and expensive to obtain.
 
-**Applying LLMs for Time Series**\
-By treating numerical data as a language-like sequence, LLMs can perform forecasting, classification, and anomaly detection without requiring domain-specific feature engineering. Instead of building separate models for different time series tasks, a single LLM can handle diverse problems through flexible prompting and adaptation.
+**Applying LLMs for Time Series**\ By treating numerical data as a language-like sequence, LLMs can perform forecasting, classification, and anomaly detection without requiring domain-specific feature engineering. Instead of building separate models for different time series tasks, a single LLM can handle diverse problems through flexible prompting and adaptation.
 
 However, the transition from NLP to time series is not straightforward. The biggest challenge is the modality gap: LLMs are trained on text, whereas time series data consists of continuous numerical values. Traditional LLM tokenization methods struggle to represent precise floating-point values, making direct application difficult. Additionally, time series often exhibit long-range dependencies, irregular sampling rates, and noise -- characteristics that standard LLM architectures are not inherently designed to handle.
 
@@ -29,17 +26,13 @@ To bridge this gap, researchers have explored several strategies:
 
 - Tool Integration: Using LLMs as a controller for specialized time series processing libraries.
 
-Chronos from AWS and Time-LLM are examples of adapting LLMs for time series analysis.\
-**Chronos (AWS):** Developed to optimize LLM architectures for time series, Chronos introduces discrete tokenization strategies that convert real-valued time series into categorical representations. This allows existing transformer-based LLMs to process time series without modifying their core architecture. AWS has positioned Chronos as an enterprise-ready solution for forecasting, anomaly detection, and time series regression.\
-**Time-LLM:** A research-driven approach that \"reprograms\" time series into textual prototypes. Time-LLM allows LLMs like LLaMA-7B to process time series by restructuring the data into a text-like format that retains critical numerical relationships. This method enables LLMs to generate domain-specific prompts, combining natural language reasoning with numerical sequence modeling.
+Chronos from AWS and Time-LLM are examples of adapting LLMs for time series analysis.\ **Chronos (AWS):** Developed to optimize LLM architectures for time series, Chronos introduces discrete tokenization strategies that convert real-valued time series into categorical representations. This allows existing transformer-based LLMs to process time series without modifying their core architecture. AWS has positioned Chronos as an enterprise-ready solution for forecasting, anomaly detection, and time series regression.\ **Time-LLM:** A research-driven approach that \"reprograms\" time series into textual prototypes. Time-LLM allows LLMs like LLaMA-7B to process time series by restructuring the data into a text-like format that retains critical numerical relationships. This method enables LLMs to generate domain-specific prompts, combining natural language reasoning with numerical sequence modeling.
 
 Beyond these, a range of multimodal LLMs, including BloombergGPT (for financial data), GPT4TS (for general time series processing), and specialized encoders like Auto-TTE (for ECG analysis).
 
-**Bridging the Modality Gap**\
-LLMs have achieved remarkable success in text-based tasks, from language translation to code generation. However, applying them to time series presents a fundamental challenge: the modality gap between natural language and numerical sequences. LLMs are designed to process discrete tokens with structured grammatical rules, while time series data consists of continuous numerical values with complex temporal dependencies. To make LLMs effective for time series, researchers have developed several techniques to bridge this gap.
+**Bridging the Modality Gap**\ LLMs have achieved remarkable success in text-based tasks, from language translation to code generation. However, applying them to time series presents a fundamental challenge: the modality gap between natural language and numerical sequences. LLMs are designed to process discrete tokens with structured grammatical rules, while time series data consists of continuous numerical values with complex temporal dependencies. To make LLMs effective for time series, researchers have developed several techniques to bridge this gap.
 
-**Text-Based Training vs. Numerical Time Series**\
-LLMs are trained on vast amounts of text using token-based representations. Each word or subword in a sentence is mapped to a fixed-length vector in a high-dimensional embedding space. Models learn the statistical relationships between tokens to predict the next word, summarize content, or answer questions.
+**Text-Based Training vs. Numerical Time Series**\ LLMs are trained on vast amounts of text using token-based representations. Each word or subword in a sentence is mapped to a fixed-length vector in a high-dimensional embedding space. Models learn the statistical relationships between tokens to predict the next word, summarize content, or answer questions.
 
 Time series data, in contrast, consists of continuous numerical values, making discrete tokenization difficult. Time series has temporal dependencies and autocorrelation. In the real world, many time series datasets are messy. They can have irregular sampling, missing values, and noise, which LLMs are not designed to handle.
 
@@ -57,8 +50,7 @@ To make time series data compatible with LLMs, researchers have developed five m
 
 - Tool Integration -- Using LLMs to generate code or API calls for external time series models.
 
-**Direct Prompting: Converting Time Series into LLM-Compatible Formats**\
-Direct prompting treats time series as text. It formats numerical data as natural language. It asks the model to infer patterns. This method requires no fine-tuning. It works with any pre-trained LLM. It allows for zero-shot forecasting and anomaly detection.
+**Direct Prompting: Converting Time Series into LLM-Compatible Formats**\ Direct prompting treats time series as text. It formats numerical data as natural language. It asks the model to infer patterns. This method requires no fine-tuning. It works with any pre-trained LLM. It allows for zero-shot forecasting and anomaly detection.
 
 Raw time series data does not fit LLMs. A sequence of numbers has no semantic structure (verbs, nouns, objects). Prompting can reformat the data to address this.
 
@@ -66,8 +58,7 @@ Instead of feeding numbers, users describe them. Instead of \"72.5, 74.1, 75.3, 
 
 This forces the model to reason like a human. It predicts outcomes based on learned patterns. It does not perform mathematical calculations. It uses common sense and pattern recognition instead.
 
-Some prompts avoid numbers entirely and focus only on trends. They ask general questions. \"Sales have increased each week. Will they continue rising?\"\
-Others keep numerical values but format them carefully. They space out digits. They ensure the model reads numbers consistently. \"The last five sales figures were 1 0 5, 1 1 0, 1 1 8, 1 2 5. Predict the next value.\"
+Some prompts avoid numbers entirely and focus only on trends. They ask general questions. \"Sales have increased each week. Will they continue rising?\"\ Others keep numerical values but format them carefully. They space out digits. They ensure the model reads numbers consistently. \"The last five sales figures were 1 0 5, 1 1 0, 1 1 8, 1 2 5. Predict the next value.\"
 
 Number-agnostic prompts work for general trends. Number-specific prompts work for structured forecasting. Both have weaknesses. The first lacks precision. The second struggles with arithmetic.
 
@@ -89,8 +80,7 @@ Prompt engineering will improve and future LLMs will learn better number represe
 
 Direct prompting works as a starting point. For better accuracy, models need structured numerical input.
 
-**Time Series Quantization**\
-Quantization converts time series into discrete categories and maps continuous values into fixed tokens. This reduces complexity and allows LLMs to process numbers as structured data.
+**Time Series Quantization**\ Quantization converts time series into discrete categories and maps continuous values into fixed tokens. This reduces complexity and allows LLMs to process numbers as structured data.
 
 Instead of storing every decimal point, it groups similar numbers. This simplifies processing and improves efficiency.
 
@@ -108,8 +98,7 @@ For example, a model trained on financial data might learn that:
 
 - Extreme volatility maps to codes C1-C5.
 
-This approach allows LLMs to interpret numerical patterns as structured text tokens, improving processing efficiency.\
-Chronos, AWS's LLM-driven time series model, applies VQ-VAE to transform real-valued data into categorical embeddings, making time series forecasting more efficient.
+This approach allows LLMs to interpret numerical patterns as structured text tokens, improving processing efficiency.\ Chronos, AWS's LLM-driven time series model, applies VQ-VAE to transform real-valued data into categorical embeddings, making time series forecasting more efficient.
 
 Raw Data: $$[123.4, 125.6, 127.8, 126.1, 124.5]$$ VQ-VAE Encoded Representation: $$["A1", "A3", "B1", "A4", "A2"]$$ This reduces the number of unique tokens the LLM needs to process while preserving structure.
 
@@ -145,8 +134,7 @@ To handle this, adaptive binning dynamically adjusts bin sizes based on the dist
 
 Quantization turns time series into structured sequences. It transforms floating-points into categorical data so the LLMs can process it efficiently.
 
-**Aligning Time Series with LLMs**\
-Time series data consists of continuous values. LLMs work with discrete tokens. This mismatch causes errors. It weakens forecasting and anomaly detection.
+**Aligning Time Series with LLMs**\ Time series data consists of continuous values. LLMs work with discrete tokens. This mismatch causes errors. It weakens forecasting and anomaly detection.
 
 Alignment maps time series into a format LLMs understand. It links numerical patterns with textual reasoning. It improves accuracy. It allows models to retain meaning across different data types.
 
@@ -180,8 +168,7 @@ Aligned models will track longer sequences. They will store key information and 
 
 system.
 
-**Vision as a Bridge**\
-What if we convert time series data into images?
+**Vision as a Bridge**\ What if we convert time series data into images?
 
 Time series often appear as plots in research papers and dashboards. Humans recognize patterns in those plots better than in raw numbers. LLMs can do the same when combined with vision models. Instead of reading numbers, they interpret time series as images.
 
@@ -217,8 +204,7 @@ Future models will refine this approach. They will combine LLMs with more advanc
 
 Some will use vision for pattern recognition and specialized models for numerical calculations. Others will combine different representations, blending images, text, and structured data.
 
-**Tool Integration**\
-LLMs can be used not just for direct inference but also as controllers for external time series models. Instead of processing time series directly, LLMs generate code, API calls, or structured queries to retrieve results from specialized forecasting engines.
+**Tool Integration**\ LLMs can be used not just for direct inference but also as controllers for external time series models. Instead of processing time series directly, LLMs generate code, API calls, or structured queries to retrieve results from specialized forecasting engines.
 
 Examples include:
 
@@ -228,11 +214,9 @@ Examples include:
 
 This approach leverages the strengths of both LLMs and traditional time series models, but it requires external dependencies and structured API interactions.
 
-**Comparative Evaluation of Different Strategies**\
-Each method for bridging the modality gap has trade-offs: You don't have to choose just one approach. You can do an ensemble of these.
+**Comparative Evaluation of Different Strategies**\ Each method for bridging the modality gap has trade-offs: You don't have to choose just one approach. You can do an ensemble of these.
 
-**LLMs in Time Series Analysis**\
-LLMs are better able to handle time series data than they were a few years ago. But there are still issues around context windows for large datasets, numerical precision and tokenization, and scalability to apply LLMs to high frequency data like real-time financial or IoT data.
+**LLMs in Time Series Analysis**\ LLMs are better able to handle time series data than they were a few years ago. But there are still issues around context windows for large datasets, numerical precision and tokenization, and scalability to apply LLMs to high frequency data like real-time financial or IoT data.
 
 ## Key Takeaways
 
