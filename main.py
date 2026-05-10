@@ -143,27 +143,28 @@ def plot_tufte(
         forecast_values[: len(forecast_index)], index=forecast_index
     )
     
-    fig, ax = plt.subplots(figsize=(10, 5))
-    ax.plot(history.index, history.values, color="#888888", lw=1.5, label="History")
-    ax.axvline(config.forecast_start, color="#666666", linestyle="--", lw=1)
-    if not actual.empty:
-        ax.plot(actual.index, actual.values, color="#444444", lw=1.8, label="Actual")
-    ax.plot(forecast_series.index, forecast_series.values, color="#000000", lw=2.0, label="TimesFM Forecast")
+    if plot:
+        fig, ax = plt.subplots(figsize=(10, 5))
+        ax.plot(history.index, history.values, color="#888888", lw=1.5, label="History")
+        ax.axvline(config.forecast_start, color="#666666", linestyle="--", lw=1)
+        if not actual.empty:
+            ax.plot(actual.index, actual.values, color="#444444", lw=1.8, label="Actual")
+        ax.plot(forecast_series.index, forecast_series.values, color="#000000", lw=2.0, label="TimesFM Forecast")
     
-    from matplotlib.ticker import MaxNLocator, StrMethodFormatter
+        from matplotlib.ticker import MaxNLocator, StrMethodFormatter
     
-    ax.yaxis.set_major_locator(MaxNLocator(4))
-    ax.yaxis.set_major_formatter(StrMethodFormatter("{x:,.0f}"))
-    ax.spines["top"].set_visible(False)
-    ax.spines["right"].set_visible(False)
-    ax.grid(False)
-    ax.set_xlabel("")
-    ax.set_title("EIA Net Generation — TimesFM forecast Jan–Aug 2025")
-    ax.legend(loc="best")
+        ax.yaxis.set_major_locator(MaxNLocator(4))
+        ax.yaxis.set_major_formatter(StrMethodFormatter("{x:,.0f}"))
+        ax.spines["top"].set_visible(False)
+        ax.spines["right"].set_visible(False)
+        ax.grid(False)
+        ax.set_xlabel("")
+        ax.set_title("EIA Net Generation — TimesFM forecast Jan–Aug 2025")
+        ax.legend(loc="best")
     
-    fig.tight_layout()
-    save_plot(fig, config.output_plot, dpi=300)
-    plt.close(fig)
+        fig.tight_layout()
+        save_plot(fig, config.output_plot, dpi=300)
+        plt.close(fig)
     logger.info(f" TimesFM plot saved -> {config.output_plot}")
 
 
