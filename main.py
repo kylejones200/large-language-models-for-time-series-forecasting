@@ -3,7 +3,6 @@
 
 from __future__ import annotations
 
-import sys
 from pathlib import Path
 
 import logging
@@ -15,7 +14,6 @@ logger = logging.getLogger(__name__)
 # Add src to path
 
 from dataclasses import dataclass
-from typing import Tuple
 
 import matplotlib.pyplot as plt
 import numpy as np
@@ -26,11 +24,9 @@ import timesfm
 from src import (
     load_config,
     ensure_output_dir,
-    get_output_dir,
     save_plot,
 )
 
-from sklearn.metrics import mean_absolute_error
 
 
 @dataclass
@@ -181,7 +177,7 @@ def main() -> None:
     series = load_series(config)
     logger.info(f"Loaded {len(series)} data points")
     
-    train_series = series.loc[: config.history_end]
+    series.loc[: config.history_end]
     actual = series.loc[config.forecast_start : config.forecast_end]
     
     # Build model
